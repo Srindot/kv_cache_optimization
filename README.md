@@ -1,5 +1,4 @@
 # KV Cache Management for LLMs
-This repository contains the course project of the course Hardware for AI, the course project aims to optimize the kv caching for a particular arch accelerator design.
 
 # Problem Statement
 Explore strategies to reduce redundant computations and improve memory utilization during long-context real-time LLM inferencing
@@ -103,4 +102,3 @@ Given your course is "Hardware for AI," focusing on ideas that have a direct lin
         *   You can combine this with an eviction policy: evict from GPU to CPU, and from CPU to disk (permanent eviction).
     *   **How it relates to Hardware:** This project directly explores the trade-offs in a memory hierarchy (fast/small vs. slow/large), which is a fundamental concept in computer architecture and hardware design. You can measure the latency impact of a "cache miss" (having to fetch from the CPU).
 
-For your project, I would recommend starting with **Idea 1 or 2**, as they are highly relevant, impactful, and can be implemented without needing to retrain a model. You can clearly demonstrate the hardware benefits (memory savings, speed changes) and analyse the performance trade-offs. Good luck!
