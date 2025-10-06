@@ -33,6 +33,33 @@ course_project/
 
 ## Quick Start
 
+### Automated Setup
+
+Run the setup script for an interactive installation:
+
+```bash
+chmod +x setup.sh
+./setup.sh
+```
+
+### Manual Setup
+
+1. **Create Environment**:
+   ```bash
+   conda env create -f environment.yml
+   conda activate kv_cache_optimization
+   ```
+
+2. **Run Experiments**:
+   ```bash
+   python run_experiments.py --model gpt2-large --length 512
+   ```
+
+3. **View Results**:
+   ```bash
+   jupyter notebook analysis_notebook.ipynb
+   ```
+
 ### 1. Run All Experiments
 
 Run the centralized experiment runner:
@@ -194,6 +221,23 @@ results/
 ```
 
 ## Dependencies
+
+### Option 1: Using Conda Environment (Recommended)
+
+Create the environment from the provided environment file:
+
+```bash
+conda env create -f environment.yml
+conda activate kv_cache_optimization
+```
+
+### Option 2: Using pip
+
+```bash
+pip install -r requirements.txt
+```
+
+### Manual Installation
 
 ```bash
 pip install torch transformers matplotlib seaborn pandas numpy

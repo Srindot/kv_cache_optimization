@@ -1,0 +1,35 @@
+name: kv_cache_optimization
+channels:
+  - pytorch
+  - nvidia/label/cuda-11.8.0
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10
+  - pytorch>=2.0.0
+  - torchvision
+  - torchaudio
+  - cuda-toolkit=11.8
+  - numpy
+  - matplotlib-base
+  - seaborn
+  - pandas
+  - jupyter
+  - ipykernel
+  - pip
+  - pip:
+    - transformers>=4.20.0
+    - accelerate
+    - bitsandbytes
+    - vllm>=0.10.0
+    - safetensors
+    - tokenizers
+    - huggingface-hub
+    - tqdm
+    - scipy
+    - scikit-learn
+    - plotly
+    - pillow
+    - requests
+    - pyyaml
+    - einops
