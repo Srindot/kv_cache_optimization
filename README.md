@@ -5,7 +5,227 @@ Explore strategies to reduce redundant computations and improve memory utilizati
 Ref: A Survey on Large Language Model
 Acceleration based on KV Cache Management
 
-Project Summary: KV Cache Optimization for LLM Inference
+# KV Cache Optimization Framework
+
+A centralized framework for running and comparing different KV cache optimization techniques for transformer models.
+
+## Project Structure
+
+```
+course_project/
+├── original_notebooks/          # Original Jupyter notebook implementations
+│   ├── memory.ipynb
+│   ├── attention_sink.ipynb
+│   ├── minicache.ipynb
+│   └── ... (all other notebooks)
+├── src/                        # Centralized source code
+│   ├── __init__.py
+│   ├── base.py                 # Base classes and utilities
+│   ├── optimizers.py           # Optimization strategy implementations
+│   ├── runner.py               # Experiment runner and management
+│   └── plotting.py             # Visualization utilities
+├── results/                    # Experiment results and plots
+│   └── plots/                  # Generated plots
+├── run_experiments.py          # Main execution script
+├── analysis_notebook.ipynb     # Main analysis and plotting notebook
+└── README.md                   # This file
+```
+
+## Quick Start
+
+### 1. Run All Experiments
+
+Run the centralized experiment runner:
+
+```bash
+python run_experiments.py --model gpt2-large --length 512
+```
+
+This will run all optimization strategies and save results to the `results/` directory.
+
+### 2. View Results
+
+Open and run the analysis notebook:
+
+```bash
+jupyter notebook analysis_notebook.ipynb
+```
+
+This notebook will load the saved results and generate comprehensive visualizations.
+
+### 3. Custom Experiments
+
+Run specific optimization strategies:
+
+```bash
+# Run only baseline and attention sink
+python run_experiments.py --experiments baseline attention_sink
+
+# Run with different model
+python run_experiments.py --model gpt2 --length 256
+
+# Skip saving results
+python run_experiments.py --no-save --no-plots
+```
+
+## Optimization Strategies
+
+### 1. Baseline
+- Full KV cache implementation
+- Reference performance for comparisons
+
+### 2. Attention Sink
+- Maintains initial tokens (sink) and sliding window
+- Reduces memory usage while preserving attention patterns
+- Parameters: `window_size=128`, `sink_size=4`
+
+### 3. MiniCache
+- Shares KV cache across transformer layers
+- Reduces memory by reusing cache from earlier layers
+- Parameters: `merge_start_layer=18`
+
+### 4. Memory Optimizers
+- **vLLM**: Optimized inference engine
+- **Transformers**: Standard transformers library
+- Compares throughput and memory efficiency
+
+## API Usage
+
+### Running Experiments Programmatically
+
+```python
+from src.runner import ExperimentRunner, ExperimentConfig
+from src.optimizers import create_optimizer
+
+# Create configuration
+config = ExperimentConfig(
+    model_name="gpt2-large",
+    generation_length=512,
+    save_results=True
+)
+
+# Create runner
+runner = ExperimentRunner(config)
+
+# Create and run optimizer
+optimizer = create_optimizer('attention_sink', window_size=128, sink_size=4)
+results = runner.run_experiment(optimizer)
+
+# Access results
+print(f"Average timing: {results.get_average_timing():.2f} ms/token")
+print(f"Peak VRAM: {results.get_peak_vram():.2f} GB")
+```
+
+### Creating Custom Optimizers
+
+```python
+from src.base import BaseOptimizer
+
+class CustomOptimizer(BaseOptimizer):
+    def __init__(self, **kwargs):
+        super().__init__("Custom Strategy")
+        # Initialize your optimization parameters
+    
+    def run_inference(self, model, tokenizer, generation_length, **kwargs):
+        # Implement your optimization logic
+        timings = []
+        vram_usage = []
+        
+        # Your implementation here...
+        
+        return timings, vram_usage
+```
+
+### Plotting Results
+
+```python
+from src.plotting import ResultsPlotter
+
+plotter = ResultsPlotter()
+
+# Create specific plots
+plotter.plot_timing_comparison(results)
+plotter.plot_vram_comparison(results)
+plotter.plot_combined_analysis(results)
+
+# Create all plots
+plotter.create_all_plots(results, save_dir="./plots")
+```
+
+## Configuration Options
+
+### ExperimentConfig Parameters
+
+- `model_name`: HuggingFace model name (default: "gpt2-large")
+- `generation_length`: Number of tokens to generate (default: 512)
+- `device`: Device to use ("cuda" or "cpu")
+- `batch_size`: Batch size for experiments (default: 1)
+- `save_results`: Whether to save results to disk (default: True)
+- `results_dir`: Directory to save results (default: "./results")
+
+### Command Line Options
+
+```bash
+python run_experiments.py --help
+```
+
+- `--model`: Model name to use
+- `--length`: Generation length
+- `--results-dir`: Results directory
+- `--experiments`: Specific experiments to run
+- `--no-save`: Don't save results
+- `--no-plots`: Don't generate plots
+
+## Results Format
+
+Results are saved in both JSON and pickle formats:
+
+```
+results/
+├── Baseline_20231206_143022.json
+├── Baseline_20231206_143022.pkl
+├── Attention_Sink_20231206_143142.json
+├── Attention_Sink_20231206_143142.pkl
+└── plots/
+    ├── timing_comparison.png
+    ├── vram_comparison.png
+    ├── combined_analysis.png
+    └── performance_bars.png
+```
+
+## Dependencies
+
+```bash
+pip install torch transformers matplotlib seaborn pandas numpy
+pip install vllm  # Optional, for memory optimization comparisons
+pip install jupyter  # For running notebooks
+```
+
+## Benefits of This Structure
+
+1. **Centralized Code**: All optimization logic in reusable classes
+2. **Easy Comparison**: Run multiple strategies with single command
+3. **Consistent Results**: Standardized experiment format
+4. **Comprehensive Plots**: Automated visualization generation
+5. **Extensible**: Easy to add new optimization strategies
+6. **Reproducible**: Save and reload experiment results
+
+## Original Notebooks
+
+All original Jupyter notebook implementations are preserved in the `original_notebooks/` directory. These contain the working implementations that were used to create the centralized framework.
+
+## Contributing
+
+To add a new optimization strategy:
+
+1. Create a new class inheriting from `BaseOptimizer` in `src/optimizers.py`
+2. Implement the `run_inference` method
+3. Add the optimizer to the factory function `create_optimizer`
+4. Update the command line options in `run_experiments.py`
+
+## License
+
+This project is part of academic research. Please cite appropriately if used in publications.
 
 Goal: To implement and evaluate one or more KV cache optimization techniques to reduce the memory footprint and accelerate the inference speed of Large Language Models, based on the strategies outlined in the survey paper.
 
