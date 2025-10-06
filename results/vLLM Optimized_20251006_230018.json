@@ -1,0 +1,26 @@
+{
+  "optimizer_name": "vLLM Optimized",
+  "config": {
+    "model_name": "gpt2",
+    "generation_length": 128,
+    "device": "cuda",
+    "batch_size": 1
+  },
+  "timings": [
+    816.3984430002529
+  ],
+  "vram_usage": [
+    0.484588623046875
+  ],
+  "metadata": {
+    "total_experiment_time": 42.24693751335144,
+    "optimizer_config": {
+      "name": "vLLM Optimized",
+      "device": "cuda",
+      "results": {},
+      "use_vllm": true
+    }
+  },
+  "average_timing": 816.3984430002529,
+  "peak_vram": 0.484588623046875
+}

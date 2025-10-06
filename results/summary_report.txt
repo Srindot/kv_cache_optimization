@@ -1,0 +1,14 @@
+============================================================
+KV CACHE OPTIMIZATION EXPERIMENT SUMMARY
+============================================================
+
+Experiment: Attention Sink
+----------------------------------------
+Model: gpt2-large
+Generation Length: 512
+Device: cuda
+Average Timing: 47.84 ms/token
+Peak VRAM: 3.09 GB
+Total Tokens: 511
+Metadata:
+  total_experiment_time: 24.76343059539795
