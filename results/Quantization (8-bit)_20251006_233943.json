@@ -1,0 +1,28 @@
+{
+  "optimizer_name": "Quantization (8-bit)",
+  "config": {
+    "model_name": "gpt2-large",
+    "generation_length": 50,
+    "device": "cuda",
+    "batch_size": 1
+  },
+  "timings": [
+    156.68457099945954,
+    161.21304199987208
+  ],
+  "vram_usage": [
+    275.0,
+    275.0
+  ],
+  "metadata": {
+    "total_experiment_time": 0.31813669204711914,
+    "optimizer_config": {
+      "name": "Quantization-8bit",
+      "device": "cuda",
+      "results": {},
+      "bit_width": 8
+    }
+  },
+  "average_timing": 158.9488064996658,
+  "peak_vram": 275.0
+}

@@ -162,9 +162,38 @@ class ExperimentRunner:
 def create_standard_experiments(config: ExperimentConfig) -> List[BaseOptimizer]:
     """Create a standard set of optimization experiments."""
     optimizers = [
+        # Core KV Cache Optimizations
         create_optimizer('baseline', device=config.device),
         create_optimizer('attention_sink', window_size=128, sink_size=4, device=config.device),
         create_optimizer('minicache', merge_start_layer=18, device=config.device),
+        
+        # Advanced Cache Optimizations
+        create_optimizer('h2o', ratio=0.1, device=config.device),
+        create_optimizer('pyramidkv', compression_ratios=[1.0, 0.8, 0.6, 0.4, 0.2], device=config.device),
+        create_optimizer('quantization_8bit', device=config.device),
+        create_optimizer('quantization_4bit', device=config.device),
+        create_optimizer('sliding_window', window_size=128, device=config.device),
+        create_optimizer('gqa', num_groups=4, device=config.device),
+        
+        # Loading and Memory Optimizations
+        create_optimizer('lorc_8bit', device=config.device),
+        create_optimizer('lorc_fp16', device=config.device),
+        
+        # Scheduling Optimizations
+        create_optimizer('scheduling_fcfs', device=config.device),
+        create_optimizer('scheduling_prefix', device=config.device),
+        
+        # Quantization Techniques
+        create_optimizer('smoothquant_05', device=config.device),
+        create_optimizer('smoothquant_08', device=config.device),
+        
+        # Alternative Architectures
+        create_optimizer('non_transformer_rwkv', device=config.device),
+        create_optimizer('non_transformer_mamba', device=config.device),
+        
+        # Architectural Alterations
+        create_optimizer('arch_alt_10x', device=config.device),
+        create_optimizer('arch_alt_20x', device=config.device),
     ]
     
     # Add memory optimizers for smaller models

@@ -1,0 +1,16 @@
+{
+  "optimizer_name": "Quantization (8-bit)",
+  "config": {
+    "model_name": "gpt2-large",
+    "generation_length": 50,
+    "device": "cuda",
+    "batch_size": 1
+  },
+  "timings": [],
+  "vram_usage": [],
+  "metadata": {
+    "error": "QuantizationOptimizer.run_inference() takes from 2 to 3 positional arguments but 4 were given"
+  },
+  "average_timing": 0.0,
+  "peak_vram": 0.0
+}

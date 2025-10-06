@@ -1,0 +1,28 @@
+{
+  "optimizer_name": "Grouped Query Attention",
+  "config": {
+    "model_name": "gpt2-large",
+    "generation_length": 50,
+    "device": "cuda",
+    "batch_size": 1
+  },
+  "timings": [
+    150.17216999967786,
+    150.85061099944141
+  ],
+  "vram_usage": [
+    1017.5,
+    1017.5
+  ],
+  "metadata": {
+    "total_experiment_time": 0.3012573719024658,
+    "optimizer_config": {
+      "name": "GQA-4groups",
+      "device": "cuda",
+      "results": {},
+      "num_groups": 4
+    }
+  },
+  "average_timing": 150.51139049955964,
+  "peak_vram": 1017.5
+}

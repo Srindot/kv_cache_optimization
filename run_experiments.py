@@ -24,7 +24,12 @@ def main():
     parser.add_argument('--length', type=int, default=512, help='Generation length')
     parser.add_argument('--results-dir', default='./results', help='Results directory')
     parser.add_argument('--experiments', nargs='+', 
-                       choices=['baseline', 'attention_sink', 'minicache', 'vllm', 'transformers', 'all'],
+                       choices=['baseline', 'attention_sink', 'minicache', 'vllm', 'transformers', 
+                               'h2o', 'pyramidkv', 'quantization', 'quantization_8bit', 'quantization_4bit',
+                               'sliding_window', 'gqa', 'lorc', 'lorc_8bit', 'lorc_fp16',
+                               'scheduling_fcfs', 'scheduling_prefix', 'smoothquant', 'smoothquant_05', 'smoothquant_08',
+                               'non_transformer_rwkv', 'non_transformer_mamba', 'architecture_alteration',
+                               'arch_alt_10x', 'arch_alt_20x', 'all'],
                        default=['all'], help='Experiments to run')
     parser.add_argument('--no-save', action='store_true', help='Do not save results')
     parser.add_argument('--no-plots', action='store_true', help='Do not generate plots')
@@ -82,6 +87,66 @@ def main():
             elif exp == 'transformers':
                 optimizers.append(create_optimizer('transformers', device=config.device))
                 experiment_names.append('Transformers Baseline')
+            elif exp == 'h2o':
+                optimizers.append(create_optimizer('h2o', ratio=0.1, device=config.device))
+                experiment_names.append('H2O Cache')
+            elif exp == 'pyramidkv':
+                optimizers.append(create_optimizer('pyramidkv', compression_ratios=[1.0, 0.8, 0.6, 0.4, 0.2], device=config.device))
+                experiment_names.append('PyramidKV')
+            elif exp == 'quantization':
+                optimizers.append(create_optimizer('quantization', bit_width=8, device=config.device))
+                experiment_names.append('Quantization (8-bit)')
+            elif exp == 'quantization_8bit':
+                optimizers.append(create_optimizer('quantization_8bit', device=config.device))
+                experiment_names.append('Quantization (8-bit)')
+            elif exp == 'quantization_4bit':
+                optimizers.append(create_optimizer('quantization_4bit', device=config.device))
+                experiment_names.append('Quantization (4-bit)')
+            elif exp == 'sliding_window':
+                optimizers.append(create_optimizer('sliding_window', window_size=128, device=config.device))
+                experiment_names.append('Sliding Window')
+            elif exp == 'gqa':
+                optimizers.append(create_optimizer('gqa', num_groups=4, device=config.device))
+                experiment_names.append('Grouped Query Attention')
+            elif exp == 'lorc':
+                optimizers.append(create_optimizer('lorc', device=config.device))
+                experiment_names.append('LORC (8-bit)')
+            elif exp == 'lorc_8bit':
+                optimizers.append(create_optimizer('lorc_8bit', device=config.device))
+                experiment_names.append('LORC (8-bit)')
+            elif exp == 'lorc_fp16':
+                optimizers.append(create_optimizer('lorc_fp16', device=config.device))
+                experiment_names.append('LORC (FP16)')
+            elif exp == 'scheduling_fcfs':
+                optimizers.append(create_optimizer('scheduling_fcfs', device=config.device))
+                experiment_names.append('Scheduling (FCFS)')
+            elif exp == 'scheduling_prefix':
+                optimizers.append(create_optimizer('scheduling_prefix', device=config.device))
+                experiment_names.append('Scheduling (Prefix-Aware)')
+            elif exp == 'smoothquant':
+                optimizers.append(create_optimizer('smoothquant', device=config.device))
+                experiment_names.append('SmoothQuant')
+            elif exp == 'smoothquant_05':
+                optimizers.append(create_optimizer('smoothquant_05', device=config.device))
+                experiment_names.append('SmoothQuant (α=0.5)')
+            elif exp == 'smoothquant_08':
+                optimizers.append(create_optimizer('smoothquant_08', device=config.device))
+                experiment_names.append('SmoothQuant (α=0.8)')
+            elif exp == 'non_transformer_rwkv':
+                optimizers.append(create_optimizer('non_transformer_rwkv', device=config.device))
+                experiment_names.append('Non-Transformer (RWKV)')
+            elif exp == 'non_transformer_mamba':
+                optimizers.append(create_optimizer('non_transformer_mamba', device=config.device))
+                experiment_names.append('Non-Transformer (Mamba)')
+            elif exp == 'architecture_alteration':
+                optimizers.append(create_optimizer('architecture_alteration', device=config.device))
+                experiment_names.append('Architecture Alteration')
+            elif exp == 'arch_alt_10x':
+                optimizers.append(create_optimizer('arch_alt_10x', device=config.device))
+                experiment_names.append('Arch Alteration (10x)')
+            elif exp == 'arch_alt_20x':
+                optimizers.append(create_optimizer('arch_alt_20x', device=config.device))
+                experiment_names.append('Arch Alteration (20x)')
         
         # Run experiments
         results = runner.run_multiple_experiments(optimizers, experiment_names)

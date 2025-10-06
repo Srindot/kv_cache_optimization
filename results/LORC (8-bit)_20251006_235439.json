@@ -1,0 +1,28 @@
+{
+  "optimizer_name": "LORC (8-bit)",
+  "config": {
+    "model_name": "gpt2-large",
+    "generation_length": 50,
+    "device": "cuda",
+    "batch_size": 1
+  },
+  "timings": [
+    160.9000010003001,
+    161.50209499937773
+  ],
+  "vram_usage": [
+    550.0,
+    550.0
+  ],
+  "metadata": {
+    "total_experiment_time": 0.3228881359100342,
+    "optimizer_config": {
+      "name": "LORC-8bit",
+      "device": "cuda",
+      "results": {},
+      "load_in_8bit": true
+    }
+  },
+  "average_timing": 161.20104799983892,
+  "peak_vram": 550.0
+}

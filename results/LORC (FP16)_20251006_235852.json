@@ -1,0 +1,28 @@
+{
+  "optimizer_name": "LORC (FP16)",
+  "config": {
+    "model_name": "gpt2-large",
+    "generation_length": 50,
+    "device": "cuda",
+    "batch_size": 1
+  },
+  "timings": [
+    154.9780519999331,
+    156.06494799976645
+  ],
+  "vram_usage": [
+    1100.0,
+    1100.0
+  ],
+  "metadata": {
+    "total_experiment_time": 0.31133413314819336,
+    "optimizer_config": {
+      "name": "LORC-FP16",
+      "device": "cuda",
+      "results": {},
+      "load_in_8bit": false
+    }
+  },
+  "average_timing": 155.52149999984977,
+  "peak_vram": 1100.0
+}

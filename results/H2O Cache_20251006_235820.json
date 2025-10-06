@@ -1,0 +1,29 @@
+{
+  "optimizer_name": "H2O Cache",
+  "config": {
+    "model_name": "gpt2-large",
+    "generation_length": 50,
+    "device": "cuda",
+    "batch_size": 1
+  },
+  "timings": [
+    108.78552699978172,
+    105.24853700007952
+  ],
+  "vram_usage": [
+    110.0,
+    110.0
+  ],
+  "metadata": {
+    "total_experiment_time": 0.21433782577514648,
+    "optimizer_config": {
+      "name": "H2O",
+      "device": "cuda",
+      "results": {},
+      "ratio": 0.1,
+      "attention_scores": {}
+    }
+  },
+  "average_timing": 107.01703199993062,
+  "peak_vram": 110.0
+}

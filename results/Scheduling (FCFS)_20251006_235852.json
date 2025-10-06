@@ -1,0 +1,29 @@
+{
+  "optimizer_name": "Scheduling (FCFS)",
+  "config": {
+    "model_name": "gpt2-large",
+    "generation_length": 50,
+    "device": "cuda",
+    "batch_size": 1
+  },
+  "timings": [
+    206.6164440002467,
+    200.48719399983383
+  ],
+  "vram_usage": [
+    1100,
+    1100
+  ],
+  "metadata": {
+    "total_experiment_time": 0.40741491317749023,
+    "optimizer_config": {
+      "name": "Scheduling-fcfs",
+      "device": "cuda",
+      "results": {},
+      "scheduler_type": "fcfs",
+      "cache": {}
+    }
+  },
+  "average_timing": 203.55181900004027,
+  "peak_vram": 1100
+}

@@ -1,0 +1,28 @@
+{
+  "optimizer_name": "Non-Transformer (RWKV)",
+  "config": {
+    "model_name": "gpt2-large",
+    "generation_length": 50,
+    "device": "cuda",
+    "batch_size": 1
+  },
+  "timings": [
+    140.25794400004088,
+    140.31378100025904
+  ],
+  "vram_usage": [
+    70.0,
+    70.0
+  ],
+  "metadata": {
+    "total_experiment_time": 0.28090643882751465,
+    "optimizer_config": {
+      "name": "NonTransformer-rwkv",
+      "device": "cuda",
+      "results": {},
+      "architecture": "rwkv"
+    }
+  },
+  "average_timing": 140.28586250014996,
+  "peak_vram": 70.0
+}

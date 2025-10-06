@@ -1,0 +1,28 @@
+{
+  "optimizer_name": "SlidingWindow-128",
+  "config": {
+    "model_name": "gpt2-large",
+    "generation_length": 100,
+    "device": "cuda",
+    "batch_size": 1
+  },
+  "timings": [
+    202.02062999942427,
+    200.79062599961617
+  ],
+  "vram_usage": [
+    1256,
+    1256
+  ],
+  "metadata": {
+    "total_experiment_time": 0.4031062126159668,
+    "optimizer_config": {
+      "name": "SlidingWindow-128",
+      "device": "cuda",
+      "results": {},
+      "window_size": 128
+    }
+  },
+  "average_timing": 201.40562799952022,
+  "peak_vram": 1256
+}

@@ -1,0 +1,28 @@
+{
+  "optimizer_name": "Arch Alteration (20x)",
+  "config": {
+    "model_name": "gpt2-large",
+    "generation_length": 50,
+    "device": "cuda",
+    "batch_size": 1
+  },
+  "timings": [
+    103.57835200011323,
+    101.2264299997696
+  ],
+  "vram_usage": [
+    640.0,
+    640.0
+  ],
+  "metadata": {
+    "total_experiment_time": 0.20506048202514648,
+    "optimizer_config": {
+      "name": "ArchAlt-20.0x",
+      "device": "cuda",
+      "results": {},
+      "compression_ratio": 20.0
+    }
+  },
+  "average_timing": 102.40239099994142,
+  "peak_vram": 640.0
+}

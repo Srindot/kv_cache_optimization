@@ -1,0 +1,28 @@
+{
+  "optimizer_name": "SmoothQuant",
+  "config": {
+    "model_name": "gpt2-large",
+    "generation_length": 50,
+    "device": "cuda",
+    "batch_size": 1
+  },
+  "timings": [
+    155.83797199997207,
+    158.57555299953674
+  ],
+  "vram_usage": [
+    660.0,
+    660.0
+  ],
+  "metadata": {
+    "total_experiment_time": 0.31567883491516113,
+    "optimizer_config": {
+      "name": "SmoothQuant-\u03b10.5",
+      "device": "cuda",
+      "results": {},
+      "alpha": 0.5
+    }
+  },
+  "average_timing": 157.2067624997544,
+  "peak_vram": 660.0
+}

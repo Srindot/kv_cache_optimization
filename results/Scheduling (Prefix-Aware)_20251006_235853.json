@@ -1,0 +1,29 @@
+{
+  "optimizer_name": "Scheduling (Prefix-Aware)",
+  "config": {
+    "model_name": "gpt2-large",
+    "generation_length": 50,
+    "device": "cuda",
+    "batch_size": 1
+  },
+  "timings": [
+    206.26996400005737,
+    166.40027700032078
+  ],
+  "vram_usage": [
+    1320.0,
+    1320.0
+  ],
+  "metadata": {
+    "total_experiment_time": 0.3729522228240967,
+    "optimizer_config": {
+      "name": "Scheduling-prefix_aware",
+      "device": "cuda",
+      "results": {},
+      "scheduler_type": "prefix_aware",
+      "cache": {}
+    }
+  },
+  "average_timing": 186.33512050018908,
+  "peak_vram": 1320.0
+}

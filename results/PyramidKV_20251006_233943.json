@@ -1,0 +1,34 @@
+{
+  "optimizer_name": "PyramidKV",
+  "config": {
+    "model_name": "gpt2-large",
+    "generation_length": 50,
+    "device": "cuda",
+    "batch_size": 1
+  },
+  "timings": [
+    134.76214799993613,
+    132.03657299982297
+  ],
+  "vram_usage": [
+    660.0,
+    660.0
+  ],
+  "metadata": {
+    "total_experiment_time": 0.2672297954559326,
+    "optimizer_config": {
+      "name": "PyramidKV",
+      "device": "cuda",
+      "results": {},
+      "compression_ratios": [
+        1.0,
+        0.8,
+        0.6,
+        0.4,
+        0.2
+      ]
+    }
+  },
+  "average_timing": 133.39936049987955,
+  "peak_vram": 660.0
+}
